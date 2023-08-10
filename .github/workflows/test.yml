@@ -1,30 +1,19 @@
-name: complex
-on: [push]
-jobs:
-  job1:
-    name: PrintDateFirst
-    runs-on: ubuntu-latest
-    steps:
-      - name: first step
-        run: |
-          now=$(date)
-          echo "$now"
-  job2:
-    name: PrintDateSecond
-    runs-on: windows-latest
-    steps:
-      - name: first step
-        run: "Get-Date"
-  job3:
-    name: PrintDateThird
-    runs-on: macos-latest
-    steps:
-      - name: first step
-        run: date
-  job4:
-    name: PrintDateFourth
-    runs-on: windows-latest
-    needs: [job1, job2, job3]
-    steps:
-      - name: first step
-        run: "Get-Date"
+	name: Test workflow
+	on: [push, pull_request]
+	jobs:
+	  job_id_1:
+	    name: Print hello world
+	    runs-on: ubuntu-latest
+	    steps:
+	     - name: Print hello step
+	       run:  Write-Output "hello"
+	     - name: Print world step
+	       run:  Write-Output "world"
+
+	  job_id_2:
+    	    name: Execute checkout action
+	    runs-on: windows-latest
+	    needs: [job_id_1]
+	    steps:
+	     - name: Checkout action
+	       uses: actions/checkout@v3

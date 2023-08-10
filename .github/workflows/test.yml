@@ -14,7 +14,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: first step
-        run: "Get-Date cmdlet"
+        run: "Get-Date"
   job3:
     name: PrintDateThird
     runs-on: macos-latest
@@ -27,4 +27,4 @@ jobs:
     needs: [job1, job2, job3]
     steps:
       - name: first step
-        run: "Get-Date cmdlet"
+        run: "Get-Date"

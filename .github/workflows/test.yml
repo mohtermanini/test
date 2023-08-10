@@ -1,21 +1,30 @@
-name: first
-
+name: complex
 on: [push]
-
 jobs:
   job1:
-    name: First Job
+    name: PrintDateFirst
     runs-on: ubuntu-latest
     steps:
-    - name: First Step
-      uses: actions/checkout@v2
-    - name: Second Step
-      run: env | sort
+      - name: first step
+        run: |
+          now=$(date)
+          echo "$now"
   job2:
-    name: Second Job
+    name: PrintDateSecond
     runs-on: windows-latest
     steps:
-    - name: First Step
-      uses: actions/checkout@v2
-    - name: Second Step
-      run: "Get-ChildItem Env: | Sort-Object Name"
+      - name: first step
+        run: "Get-Date cmdlet"
+  job3:
+    name: PrintDateThird
+    runs-on: macos-latest
+    steps:
+      - name: first step
+        run: date
+  job4:
+    name: PrintDateFourth
+    runs-on: windows-latest
+    needs: [job1, job2, job3]
+    steps:
+      - name: first step
+        run: "Get-Date cmdlet"

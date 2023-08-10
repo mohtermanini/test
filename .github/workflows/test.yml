@@ -3,7 +3,7 @@ on: [push, pull_request]
 jobs:
   job_id_1:
     name: Print hello world
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
      - name: Print hello step
        run:  Write-Output "hello"
@@ -12,7 +12,7 @@ jobs:
 
   job_id_2:
     name: Execute checkout action
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     needs: [job_id_1]
     steps:
      - name: Checkout action
